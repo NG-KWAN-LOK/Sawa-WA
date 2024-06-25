@@ -1,0 +1,32 @@
+name: Tagged Release Extension
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release:
+    name: Release Web Extension
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Up Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: "21"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: NPM Install
+        run: npm install
+
+      - name: Zip Extension For Chrome
+        run: npm run zip
+
+      - name: Release To Github
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: .output/*.zip
