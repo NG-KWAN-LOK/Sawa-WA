@@ -1,17 +1,22 @@
 import { BackgroundImage } from "@/entrypoints/component/background-image/BackgroundImage";
-import { Box } from "@mui/material";
-import { useCallback, useState } from "react";
+import { useTheme } from "@emotion/react";
+import { Box, ThemeProvider } from "@mui/material";
+import { SearchFromText } from "../component/search-from-text/SearchFromText";
 
 function App() {
+  const theme = useTheme();
   return (
-    <Box
-      sx={{
-        width: 600,
-        p: 2,
-      }}
-    >
-      <BackgroundImage />
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          width: 600,
+          p: 2,
+        }}
+      >
+        <BackgroundImage />
+        <SearchFromText />
+      </Box>
+    </ThemeProvider>
   );
 }
 
