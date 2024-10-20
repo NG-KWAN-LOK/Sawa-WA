@@ -8,7 +8,7 @@ import {
 import { PopUpCursor } from "./component/cursor/PopUpCursor";
 
 const CHAT_BACKGROUND_CLASS_ID = "[data-asset-chat-background-dark]";
-const CHAT_BACKGROUND_CLASS_ID_2 = "_aigv";
+const CHAT_BACKGROUND_CLASS_ID_2 = "x1hx0egp";
 const POP_UP_CURSOR_ID = "pop-up-cursor";
 const POP_UP_CURSOR_BUTTON_ID = "pop-up-cursor-button";
 
@@ -37,6 +37,7 @@ const changeChatBackgroundSize = async (size: string | null) => {
 
 const handleChatBackgroundChange = async () => {
   const observer = new MutationObserver(async (mutations) => {
+    console.log(mutations.map((mutation) => mutation.target));
     const isChatBackgroundChanged = mutations.some((mutation) => {
       const targetElement = mutation.target as HTMLElement;
       return targetElement.classList.contains(CHAT_BACKGROUND_CLASS_ID_2);
